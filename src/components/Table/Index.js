@@ -1,8 +1,7 @@
 import React from "react";
-import "./Table.css";
 import numeral from "numeral";
 
-function Table({ countries }) {
+function Index({ countries }) {
   return (
     <div className="table">
       {countries.map((country) => (
@@ -17,4 +16,4 @@ function Table({ countries }) {
   );
 }
 
-export default Table;
+export default Index;
