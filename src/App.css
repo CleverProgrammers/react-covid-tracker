@@ -38,6 +38,11 @@ body {
   flex: 0.9;
 }
 
+.app__right {
+  flex: 1;
+  flex-direction: column;
+}
+
 .app__information > h3 {
   color: #6a5d5d;
   font-weight: 400;
