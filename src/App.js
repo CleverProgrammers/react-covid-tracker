@@ -23,7 +23,7 @@ const App = () => {
   const [tableData, setTableData] = useState([]);
   const [casesType, setCasesType] = useState("cases");
   const [mapCenter, setMapCenter] = useState({ lat: 34.80746, lng: -40.4796 });
-  const [mapZoom, setMapZoom] = useState(3);
+  const [mapZoom, setMapZoom] = useState(2);
 
   useEffect(() => {
     fetch("https://disease.sh/v3/covid-19/all")
@@ -66,8 +66,23 @@ const App = () => {
       .then((data) => {
         setInputCountry(countryCode);
         setCountryInfo(data);
-        setMapCenter([data.countryInfo.lat, data.countryInfo.long]);
-        setMapZoom(4);
+        console.log("Country data: ",data);
+
+        if(countryCode === "worldwide"){
+          setMapCenter({ lat: 34.80746, lng: -40.4796 });
+          setMapZoom(2);
+        }
+        else{
+          setMapCenter([data.countryInfo.lat, data.countryInfo.long]);
+          setMapZoom(4);
+        }
+        // countryCode === "worldwide" ? (
+        //   setMapCenter({ lat: 34.80746, lng: -40.4796 });
+        //   setMapZoom(3);
+        // ) : (
+        //   setMapCenter([data.countryInfo.lat, data.countryInfo.long]);
+        //   setMapZoom(4);
+        // )
       });
   };
 
@@ -83,8 +98,8 @@ const App = () => {
               onChange={onCountryChange}
             >
               <MenuItem value="worldwide">Worldwide</MenuItem>
-              {countries.map((country) => (
-                <MenuItem value={country.value}>{country.name}</MenuItem>
+              {countries.map((country,i) => (
+                <MenuItem key = {i} value={country.value}>{country.name}</MenuItem>
               ))}
             </Select>
           </FormControl>
