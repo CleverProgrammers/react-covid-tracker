@@ -2,6 +2,17 @@
   margin: 0;
 }
 
+body::-webkit-scrollbar {
+  width: 8px;
+}
+body::-webkit-scrollbar-thumb {
+  background-color: plum;
+  border-radius: 50px;
+}
+body::-webkit-scrollbar-track {
+  background-color: pink;
+}
+
 body {
   background-color: #f5f6fa;
 }
