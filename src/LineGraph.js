@@ -65,6 +65,21 @@ const buildChartData = (data, casesType) => {
 
 function LineGraph({ casesType }) {
   const [data, setData] = useState({});
+  const [bgcolor, setBgcolor] = useState('#cc1034a9');
+  const [brcolor, setBrcolor] = useState('#cc1034');
+
+  useEffect(() => {
+    if(casesType === 'recovered'){
+      setBgcolor("#90ee90a9");
+      setBrcolor("#90ee90a9");
+    }else if(casesType === 'deaths'){
+      setBgcolor("#fb4443a9")
+      setBrcolor("#fb4443");
+    }else {
+      setBgcolor("#cc1034a9");
+      setBrcolor("#cc1034");
+    }
+  }, [casesType])
 
   useEffect(() => {
     const fetchData = async () => {
@@ -90,8 +105,11 @@ function LineGraph({ casesType }) {
           data={{
             datasets: [
               {
-                backgroundColor: "rgba(204, 16, 52, 0.5)",
-                borderColor: "#CC1034",
+                label: `worldwide ${casesType}`,
+                fill: true,
+                backgroundColor: bgcolor,
+                pointHoverRadius: 4,
+                pointHoverBackgroundColor: brcolor,
                 data: data,
               },
             ],
